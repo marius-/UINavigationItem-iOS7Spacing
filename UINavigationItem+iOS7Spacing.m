@@ -22,6 +22,8 @@
     return space;
 }
 
+#pragma clang diagnostic push
+#pragma ide diagnostic ignored "InfiniteRecursion"
 - (void)mk_setLeftBarButtonItem:(UIBarButtonItem *)leftBarButtonItem
 {
     if ([self isIOS7] && leftBarButtonItem) {
@@ -34,7 +36,10 @@
         [self mk_setLeftBarButtonItem:leftBarButtonItem];
     }
 }
+#pragma clang diagnostic pop
 
+#pragma clang diagnostic push
+#pragma ide diagnostic ignored "InfiniteRecursion"
 - (void)mk_setLeftBarButtonItems:(NSArray *)leftBarButtonItems
 {
     if ([self isIOS7] && leftBarButtonItems && leftBarButtonItems.count > 0) {
@@ -48,7 +53,10 @@
         [self mk_setLeftBarButtonItems:leftBarButtonItems];
     }
 }
+#pragma clang diagnostic pop
 
+#pragma clang diagnostic push
+#pragma ide diagnostic ignored "InfiniteRecursion"
 - (void)mk_setRightBarButtonItem:(UIBarButtonItem *)rightBarButtonItem
 {
     if ([self isIOS7] && rightBarButtonItem) {
@@ -61,7 +69,10 @@
         [self mk_setRightBarButtonItem:rightBarButtonItem];
     }
 }
+#pragma clang diagnostic pop
 
+#pragma clang diagnostic push
+#pragma ide diagnostic ignored "InfiniteRecursion"
 - (void)mk_setRightBarButtonItems:(NSArray *)rightBarButtonItems
 {
     if ([self isIOS7] && rightBarButtonItems && rightBarButtonItems.count > 0) {
@@ -75,6 +86,7 @@
         [self mk_setRightBarButtonItems:rightBarButtonItems];
     }
 }
+#pragma clang diagnostic pop
 
 + (void)mk_swizzle:(SEL)aSelector
 {
