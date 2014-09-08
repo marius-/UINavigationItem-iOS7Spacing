@@ -24,18 +24,28 @@
 
 - (void)mk_setLeftBarButtonItem:(UIBarButtonItem *)leftBarButtonItem
 {
+    [self setLeftBarButtonItem:leftBarButtonItem animated:NO];
+}
+
+- (void)mk_setLeftBarButtonItem:(UIBarButtonItem *)leftBarButtonItem animated:(BOOL)animated
+{
     if ([self isIOS7] && leftBarButtonItem) {
-        [self mk_setLeftBarButtonItem:nil];
-        [self mk_setLeftBarButtonItems:@[[self spacer], leftBarButtonItem]];
+        [self mk_setLeftBarButtonItem:nil animated:NO];
+        [self mk_setLeftBarButtonItems:@[[self spacer], leftBarButtonItem] animated:animated];
     } else {
         if ([self isIOS7]) {
-            [self mk_setLeftBarButtonItems:nil];
+            [self mk_setLeftBarButtonItems:nil animated:NO];
         }
-        [self mk_setLeftBarButtonItem:leftBarButtonItem];
+        [self mk_setLeftBarButtonItem:leftBarButtonItem animated:animated];
     }
 }
 
 - (void)mk_setLeftBarButtonItems:(NSArray *)leftBarButtonItems
+{
+    [self setLeftBarButtonItems:leftBarButtonItems animated:NO];
+}
+
+- (void)mk_setLeftBarButtonItems:(NSArray *)leftBarButtonItems animated:(BOOL)animated
 {
     if ([self isIOS7] && leftBarButtonItems && leftBarButtonItems.count > 0) {
         
@@ -43,26 +53,36 @@
         [items addObject:[self spacer]];
         [items addObjectsFromArray:leftBarButtonItems];
         
-        [self mk_setLeftBarButtonItems:items];
+        [self mk_setLeftBarButtonItems:items animated:animated];
     } else {
-        [self mk_setLeftBarButtonItems:leftBarButtonItems];
+        [self mk_setLeftBarButtonItems:leftBarButtonItems animated:animated];
     }
 }
 
 - (void)mk_setRightBarButtonItem:(UIBarButtonItem *)rightBarButtonItem
 {
+    [self setRightBarButtonItem:rightBarButtonItem animated:NO];
+}
+
+- (void)mk_setRightBarButtonItem:(UIBarButtonItem *)rightBarButtonItem animated:(BOOL)animated
+{
     if ([self isIOS7] && rightBarButtonItem) {
-        [self mk_setRightBarButtonItem:nil];
-        [self mk_setRightBarButtonItems:@[[self spacer], rightBarButtonItem]];
+        [self mk_setRightBarButtonItem:nil animated:NO];
+        [self mk_setRightBarButtonItems:@[[self spacer], rightBarButtonItem] animated:animated];
     } else {
         if ([self isIOS7]) {
-            [self mk_setRightBarButtonItems:nil];
+            [self mk_setRightBarButtonItems:nil animated:NO];
         }
-        [self mk_setRightBarButtonItem:rightBarButtonItem];
+        [self mk_setRightBarButtonItem:rightBarButtonItem animated:animated];
     }
 }
 
 - (void)mk_setRightBarButtonItems:(NSArray *)rightBarButtonItems
+{
+    [self setRightBarButtonItems:rightBarButtonItems animated:NO];
+}
+
+- (void)mk_setRightBarButtonItems:(NSArray *)rightBarButtonItems animated:(BOOL)animated
 {
     if ([self isIOS7] && rightBarButtonItems && rightBarButtonItems.count > 0) {
         
@@ -70,9 +90,9 @@
         [items addObject:[self spacer]];
         [items addObjectsFromArray:rightBarButtonItems];
         
-        [self mk_setRightBarButtonItems:items];
+        [self mk_setRightBarButtonItems:items animated:animated];
     } else {
-        [self mk_setRightBarButtonItems:rightBarButtonItems];
+        [self mk_setRightBarButtonItems:rightBarButtonItems animated:animated];
     }
 }
 
@@ -89,9 +109,13 @@
 + (void)load
 {
     [self mk_swizzle:@selector(setLeftBarButtonItem:)];
+    [self mk_swizzle:@selector(setLeftBarButtonItem:animated:)];
     [self mk_swizzle:@selector(setLeftBarButtonItems:)];
+    [self mk_swizzle:@selector(setLeftBarButtonItems:animated:)];
     [self mk_swizzle:@selector(setRightBarButtonItem:)];
+    [self mk_swizzle:@selector(setRightBarButtonItem:animated:)];
     [self mk_swizzle:@selector(setRightBarButtonItems:)];
+    [self mk_swizzle:@selector(setRightBarButtonItems:animated:)];
 }
 
 @end
